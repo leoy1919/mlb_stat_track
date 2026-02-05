@@ -10,7 +10,7 @@ suppressPackageStartupMessages({
 
 source('./stattrack_backend.R')
 source('./src/stattrack_functions.R')
-source('./depth_chart_viz.R')
+source('./src/depth_chart_viz.R')
 
 ui = dashboardPage( ## whole page
       options = list(sidebarExpandOnHover = TRUE),
