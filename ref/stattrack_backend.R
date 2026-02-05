@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
 `%!in%` = Negate(`%in%`)
 
 orgmap_df <- fread('orgmap_df.csv')
-### athl
+### athletics
 ath = orgmap_df |> filter(parentOrgId == 133)
 ath[org == 'OAK', 'org'] = 'ATH'
 ath[org == 'ATH', 'parentOrgName'] = 'Athletics'
@@ -31,8 +31,9 @@ names(orgcol) <- orglist
 cum_bat <- fread('cum_bat_24.csv')
 ### as numeric
 cum_bat$WAR <- as.numeric(cum_bat$WAR)
-cum_bat_22 <- fread('cum_bat_25.csv')
+cum_bat$playerid <- as.character(cum_bat$playerid)
 
+cum_bat_22 <- fread('cum_bat_25.csv')
 # ### as numeric
 cum_bat_22$WAR <- as.numeric(cum_bat_22$WAR)
 cum_bat_22$playerid <- as.character(cum_bat_22$playerid)
@@ -51,8 +52,6 @@ setnames(player_mapper,'IDFANGRAPHS', 'fangraphs')
 ## re-init
 dailyroster = dailyroster |> left_join(player_mapper, by = 'mlbid')
 dailyroster$fangraphs <- as.integer(dailyroster$fangraphs)
-
-dailyroster$team_abbreviation %>% table()
 dailyroster <- data.table(dailyroster)
 
 ## rename
@@ -63,7 +62,7 @@ dailyroster[team_abbreviation == 'WSH', 'team_abbreviation'] <- 'WAS'
 
 ### join FG WITH PLAYERINFO TABLE
 ## init
-stattrack_df <- cum_bat %>% #left_join(day_team, by = c('Date', 'playerid') ) %>%
+stattrack_df <- cum_bat %>% 
   left_join(dailyroster %>% select(fangraphs, mlbid, name, team_abbreviation, position.abbreviation), by = c('playerid' = 'fangraphs') )
 
 ### NO PITCHERS
