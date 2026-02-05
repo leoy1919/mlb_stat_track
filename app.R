@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
   library(reactablefmtr)
 })
 
-source('./stattrack_backend.R')
+source('./ref/stattrack_backend.R')
 source('./src/stattrack_functions.R')
 source('./src/depth_chart_viz.R')
 
