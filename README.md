@@ -18,6 +18,6 @@ This repository does *not* include:
 - Backend flat files (csv) that the app pulls data from
 - Scraping and data wrangling scripts that create the flat files that the app pulls from
 
-## Deployment
+## Reproducibility
 
 This app is deployed on shinyapps.io. Cloning the repo and running the `app.R` script locally will not recreate the shiny app that is deployed.
